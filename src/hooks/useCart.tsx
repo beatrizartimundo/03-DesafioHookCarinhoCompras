@@ -21,13 +21,15 @@ interface CartContextData {
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
+// https://github.com/GBDev13/ignite-desafio-reactjs-criando-um-hook-de-carrinho-de-compras/blob/master/src/hooks/useCart.tsx
+
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const [cart, setCart] = useState<Product[]>(() => {
-    // const storagedCart = Buscar dados do localStorage
+    const storagedCart = localStorage.getItem('@RocketShoes:cart')
 
-    // if (storagedCart) {
-    //   return JSON.parse(storagedCart);
-    // }
+    if (storagedCart) {
+      return JSON.parse(storagedCart);
+    }
 
     return [];
   });
